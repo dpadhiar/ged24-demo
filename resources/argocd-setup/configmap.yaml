@@ -21,7 +21,7 @@ data:
               end
               if condition.type == "ChildResourcesHealthy" and condition.status == "True" then
                 hs.status = "Healthy"
-                hs.message = condition.message
+                hs.message = "foobar"
                 return hs
               end
               if condition.type == "ChildResourcesHealthy" and condition.status == "Unknown" then
