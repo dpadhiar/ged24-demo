@@ -20,7 +20,7 @@ data:
                 return hs
               end
               if condition.type == "ChildResourcesPausedOrPausing" and condition.status == "True" and obj.metadata.generation == obj.status.observedGeneration then
-                hs.Status = "Suspended"
+                hs.status = "Suspended"
                 hs.message = condition.message
                 return hs
               end
