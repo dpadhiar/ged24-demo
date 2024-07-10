@@ -21,7 +21,7 @@ data:
               end
               if condition.type == "PipelinePausingOrPaused" and condition.status == "True" and obj.metadata.generation == obj.status.observedGeneration then
                 hs.status = "Suspended"
-                hs.message = condition.message
+                hs.message = "Pipeline is paused"
                 return hs
               end
               if condition.type == "ChildResourcesHealthy" and condition.status == "True" and obj.metadata.generation == obj.status.observedGeneration then
