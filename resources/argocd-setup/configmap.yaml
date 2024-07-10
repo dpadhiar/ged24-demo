@@ -18,6 +18,7 @@ data:
                 hs.status = "Progressing"
                 hs.message = "Waiting for Pipeline status"
                 return hs
+              end
               if condition.type == "ChildResourcesPausedOrPausing" and condition.status == "True" and obj.metadata.generation == obj.status.observedGeneration then
                 hs.Status = "Suspended"
                 hs.message = condition.message
