@@ -18,9 +18,9 @@ spec:
         udf:
           builtin:
             name: cat
-      - name: out
-        sink:
-          log: {}
+      # - name: out
+      #   sink:
+      #     log: {}
       - name: out2
         sink:
           log: {}
