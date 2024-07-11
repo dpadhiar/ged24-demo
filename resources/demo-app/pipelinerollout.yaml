@@ -7,7 +7,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
 spec:
   pipeline:
-    interStepBufferServiceName: my-isbsvc
     vertices:
       - name: in
         source:
