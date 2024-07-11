@@ -11,8 +11,8 @@ data:
     numaplane.numaproj.io/PipelineRollout:
       health.lua: |
         hs = {}
-        healthyCondition = ""
-        pipelinePaused = ""
+        healthyCondition = "False"
+        pipelinePaused = "False"
         if obj.status ~= nil then
           if obj.status.conditions ~= nil then
             for i, condition in ipairs(obj.status.conditions) do
@@ -43,7 +43,7 @@ data:
         hs.status = "Progessing"
         hs.message = condition.message
         return hs
-        
+
     numaplane.numaproj.io/ISBServiceRollout:
       health.lua: |
         hs = {}
