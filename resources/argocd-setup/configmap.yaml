@@ -29,20 +29,19 @@ data:
           hs.status = "Progressing"
           hs.message = "Waiting for Pipeline status"
           return hs
-        end
         elseif pipelinePaused.status == "True" then
           hs.status = "Suspended"
           hs.message = pipelinePaused.message
           return hs
-        end
         elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
+        else
+          hs.status = "Degraded"
+          hs.message = healthyCondition.message
+          return hs
         end
-        hs.status = "Degraded"
-        hs.message = healthyCondition.message
-        return hs
 
     numaplane.numaproj.io/ISBServiceRollout:
       health.lua: |
@@ -61,15 +60,15 @@ data:
           hs.status = "Progressing"
           hs.message = "Waiting for ISBService status"
           return hs
-        end
         elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
+        else
+          hs.status = "Degraded"
+          hs.message = healthyCondition.message
+          return hs
         end
-        hs.status = "Degraded"
-        hs.message = healthyCondition.message
-        return hs
 
     numaplane.numaproj.io/NumaflowControllerRollout:
       health.lua: |
@@ -88,12 +87,12 @@ data:
           hs.status = "Progressing"
           hs.message = "Waiting for NumaflowController status"
           return hs
-        end
         elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
+        else
+          hs.status = "Degraded"
+          hs.message = healthyCondition.message
+          return hs
         end
-        hs.status = "Degraded"
-        hs.message = healthyCondition.message
-        return hs
