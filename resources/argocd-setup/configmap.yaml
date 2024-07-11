@@ -11,8 +11,8 @@ data:
     numaplane.numaproj.io/PipelineRollout:
       health.lua: |
         hs = {}
-        healthyCondition = "False"
-        pipelinePaused = "False"
+        healthyCondition = ""
+        pipelinePaused = ""
         if obj.status ~= nil then
           if obj.status.conditions ~= nil then
             for i, condition in ipairs(obj.status.conditions) do
@@ -27,21 +27,21 @@ data:
         end
         if healthyCondition == "False" or obj.metadata.generation ~= obj.status.observedGeneration then
           hs.status = "Progressing"
-          hs.message = condition.message
+          hs.message = "Progressing"
           return hs
         end
         if pipelinePaused == "True" and obj.metadata.generation == obj.status.observedGeneration then
           hs.status = "Suspended"
-          hs.message = condition.message
+          hs.message = "Pipeline is paused"
           return hs
         end
         if healthyCondition == "True" and obj.metadata.generation == obj.status.observedGeneration then
           hs.status = "Healthy"
-          hs.message = condition.message
+          hs.message = "Successful"
           return hs
         end
         hs.status = "Progessing"
-        hs.message = condition.message
+        hs.message = "Progressing"
         return hs
 
     numaplane.numaproj.io/ISBServiceRollout:
