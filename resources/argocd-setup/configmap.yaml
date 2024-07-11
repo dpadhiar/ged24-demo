@@ -30,12 +30,12 @@ data:
           hs.message = "Waiting for Pipeline status"
           return hs
         end
-        else if pipelinePaused.status == "True" then
+        elseif pipelinePaused.status == "True" then
           hs.status = "Suspended"
           hs.message = pipelinePaused.message
           return hs
         end
-        else if healthyCondition.status == "True" then
+        elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
@@ -62,7 +62,7 @@ data:
           hs.message = "Waiting for ISBService status"
           return hs
         end
-        else if healthyCondition.status == "True" then
+        elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
@@ -89,7 +89,7 @@ data:
           hs.message = "Waiting for NumaflowController status"
           return hs
         end
-        else if healthyCondition.status == "True" then
+        elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
           hs.message = healthyCondition.message
           return hs
