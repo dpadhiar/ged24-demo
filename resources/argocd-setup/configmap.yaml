@@ -31,7 +31,7 @@ data:
           return hs
         elseif pipelinePaused.status == "True" then
           hs.status = "Suspended"
-          hs.message = pipelinePaused.message
+          hs.message = "Pipeline is paused"
           return hs
         elseif healthyCondition.status == "True" then
           hs.status = "Healthy"
