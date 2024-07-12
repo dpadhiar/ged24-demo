@@ -10,4 +10,4 @@ spec:
     jetstream:
       version: latest
       persistence:
-        volumeSize: 1Gi
+        volumeSize: invalid
