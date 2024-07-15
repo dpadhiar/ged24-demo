@@ -14,12 +14,12 @@ spec:
           generator:
             rpu: 5
             duration: 1s
-      # - name: even-or-odd
-      #   partitions: 2
-      #   udf:
-      #     container:
-      #       image: quay.io/numaio/numaflow-go/map-even-odd:numaplane-demo-v1.0.0
-      #       imagePullPolicy: Always
+      - name: even-or-odd
+        partitions: 2
+        udf:
+          container:
+            image: quay.io/numaio/numaflow-go/map-even-odd:numaplane-demo-v1.0.0
+            imagePullPolicy: Always
       - name: even-sink
         partitions: 2
         sink:
