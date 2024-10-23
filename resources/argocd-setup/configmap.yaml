@@ -83,8 +83,7 @@ data:
     hs.status = "Progressing"
     hs.message = "Waiting for ISBService status"
     return hs
-  resource.customizations.health.numaplane.numaproj.io_NumaflowControllerRollout:
-    |
+  resource.customizations.health.numaplane.numaproj.io_NumaflowControllerRollout: |
     -- Remove this after releasing Argo CD 2.13. https://github.com/argoproj/argo-cd/pull/19077
     local hs = {}
     local healthyCondition = {}
