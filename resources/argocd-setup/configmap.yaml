@@ -7,8 +7,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  resource.customizations: |
-    resource.customizations.health.numaplane.numaproj.io_PipelineRollout: |
+  resource.customizations.health.numaplane.numaproj.io_PipelineRollout: |
     -- Remove this after releasing Argo CD 2.13. https://github.com/argoproj/argo-cd/pull/19077
     local hs = {}
     local healthyCondition = {}
