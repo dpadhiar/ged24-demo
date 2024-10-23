@@ -5,6 +5,9 @@ metadata:
   namespace: demo-app
 spec:
   monoVertex:
+    metadata:
+      annotations:
+        numaflow.numaproj.io/instance: "1"
     spec:
       source:
         udsource:
