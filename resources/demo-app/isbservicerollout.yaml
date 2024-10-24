@@ -6,8 +6,8 @@ metadata:
 spec:
   interStepBufferService:
     metadata:
-    annotations:
-      numaflow.numaproj.io/instance: "0"
+      annotations:
+        numaflow.numaproj.io/instance: "0"
     spec:
       # Example from https://github.com/numaproj/numaflow/blob/main/examples/0-isbsvc-jetstream.yaml
       jetstream:
