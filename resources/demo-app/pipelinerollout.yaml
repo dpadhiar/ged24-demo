@@ -5,9 +5,9 @@ metadata:
   namespace: demo-app
 spec:
   pipeline:
-    # metadata:
-    #   annotations:
-    #     numaflow.numaproj.io/instance: "0" 
+    metadata:
+      annotations:
+        numaflow.numaproj.io/instance: "0" 
     spec:
       interStepBufferServiceName: my-isbsvc
       vertices:
