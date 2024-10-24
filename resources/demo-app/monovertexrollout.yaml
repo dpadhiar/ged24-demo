@@ -3,6 +3,8 @@ kind: MonoVertexRollout
 metadata:
   name: my-monovertex
   namespace: demo-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   monoVertex:
     metadata:
