@@ -9,7 +9,7 @@ spec:
   monoVertex:
     metadata:
       annotations:
-        numaflow.numaproj.io/instance: "0"
+        numaflow.numaproj.io/instance: "1"
     spec:
       source:
         udsource:
