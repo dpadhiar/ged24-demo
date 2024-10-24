@@ -14,3 +14,4 @@ spec:
         version: 2.10.3
         persistence:
           volumeSize: 1Gi
+        replicas: 1
