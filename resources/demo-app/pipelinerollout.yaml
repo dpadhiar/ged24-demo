@@ -9,9 +9,9 @@ spec:
   pipeline:
     metadata:
       annotations:
-        numaflow.numaproj.io/instance: "1" 
+        numaflow.numaproj.io/instance: "0" 
     spec:
-      interStepBufferServiceName: my-isbsvc-1
+      interStepBufferServiceName: my-isbsvc-0
       vertices:
         - name: in
           source:
