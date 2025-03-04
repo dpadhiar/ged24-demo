@@ -2,19 +2,17 @@ apiVersion: numaplane.numaproj.io/v1alpha1
 kind: MonoVertexRollout
 metadata:
   name: my-monovertex
-  namespace: demo-app
+  namespace: demo
   annotations:
     argocd.argoproj.io/sync-wave: "3"
 spec:
   monoVertex:
-    metadata:
-      annotations:
-        numaflow.numaproj.io/instance: "1"
     spec:
       source:
         udsource:
           container:
             image: quay.io/numaio/numaflow-java/source-simple-source:stable
+            # image: quay.io/numaio/numaflow-java/source-simple-source:bad-image
         # transformer is an optional container to do any transformation to the incoming data before passing to the sink
         transformer:
           container:

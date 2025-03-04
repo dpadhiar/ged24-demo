@@ -1,34 +1,34 @@
-apiVersion: numaplane.numaproj.io/v1alpha1
-kind: PipelineRollout
-metadata:
-  name: my-pipeline
-  namespace: demo-app
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"
-spec:
-  pipeline:
-    metadata:
-      annotations:
-        numaflow.numaproj.io/instance: "1" 
-    spec:
-      interStepBufferServiceName: my-isbsvc-1
-      vertices:
-        - name: in
-          source:
-            # A self data generating source
-            generator:
-              rpu: 500
-              duration: 1s
-        - name: cat
-          udf:
-            builtin:
-              name: cat # A built-in UDF which simply cats the message
-        - name: out
-          sink:
-            # A simple log printing sink
-            log: {}
-      edges:
-        - from: in
-          to: cat
-        - from: cat
-          to: out
+# apiVersion: numaplane.numaproj.io/v1alpha1
+# kind: PipelineRollout
+# metadata:
+#   name: my-pipeline
+#   namespace: demo-app
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "3"
+# spec:
+#   pipeline:
+#     metadata:
+#       annotations:
+#         numaflow.numaproj.io/instance: "1" 
+#     spec:
+#       interStepBufferServiceName: my-isbsvc-1
+#       vertices:
+#         - name: in
+#           source:
+#             # A self data generating source
+#             generator:
+#               rpu: 500
+#               duration: 1s
+#         - name: cat
+#           udf:
+#             builtin:
+#               name: cat # A built-in UDF which simply cats the message
+#         - name: out
+#           sink:
+#             # A simple log printing sink
+#             log: {}
+#       edges:
+#         - from: in
+#           to: cat
+#         - from: cat
+#           to: out
