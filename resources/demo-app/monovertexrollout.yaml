@@ -11,8 +11,8 @@ spec:
       source:
         udsource:
           container:
-            # image: quay.io/numaio/numaflow-java/source-simple-source:stable
-            image: quay.io/numaio/numaflow-java/source-simple-source:bad-image
+            image: quay.io/numaio/numaflow-java/source-simple-source:stable
+            # image: quay.io/numaio/numaflow-java/source-simple-source:bad-image
         # transformer is an optional container to do any transformation to the incoming data before passing to the sink
         transformer:
           container:
