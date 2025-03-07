@@ -29,5 +29,5 @@ spec:
           to: cat
         - from: cat
           to: out
-        - from: bad
-          to: edge
+        # - from: bad
+        #   to: edge
