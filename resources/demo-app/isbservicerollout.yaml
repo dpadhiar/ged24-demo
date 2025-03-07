@@ -1,17 +1,17 @@
-# apiVersion: numaplane.numaproj.io/v1alpha1
-# kind: ISBServiceRollout
-# metadata:
-#   name: my-isbsvc
-#   namespace: demo-app
-#   annotations:
-#     argocd.argoproj.io/sync-wave: "2"
-# spec:
-#   interStepBufferService:
-#     spec:
-#       # Example from https://github.com/numaproj/numaflow/blob/main/examples/0-isbsvc-jetstream.yaml
-#       jetstream:
-#         version: 2.10.3
-#         # version: 2.0.3
-#         persistence:
-#           volumeSize: 1Gi
-#         replicas: 1
+apiVersion: numaplane.numaproj.io/v1alpha1
+kind: ISBServiceRollout
+metadata:
+  name: my-isbsvc
+  namespace: demo
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  interStepBufferService:
+    spec:
+      # Example from https://github.com/numaproj/numaflow/blob/main/examples/0-isbsvc-jetstream.yaml
+      jetstream:
+        version: 2.10.3
+        # version: 2.0.3
+        persistence:
+          volumeSize: 1Gi
+        replicas: 1
