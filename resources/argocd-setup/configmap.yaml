@@ -267,3 +267,59 @@ data:
       action.lua: |
         obj.spec.monoVertex.spec.lifecycle.desiredPhase = "Running"
         return obj
+  resource.customizations.actions.numaflow.numaproj.io_Pipeline: |
+    discovery.lua: |
+      local actions = {}
+      actions["pause"] = {["disabled"] = true}
+      actions["unpause"] = {["disabled"] = true}
+
+      local paused = false
+      if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
+          paused = true
+      end
+      if paused then
+        actions["unpause"]["disabled"] = false
+      else
+        actions["pause"]["disabled"] = false
+      end
+      return actions
+    definitions:
+    - name: pause
+      action.lua: |
+        if obj.spec.lifecycle == nil then
+          obj.spec.lifecycle = {}
+        end
+        obj.spec.lifecycle.desiredPhase = "Paused"
+        return obj
+    - name: unpause
+      action.lua: |
+        obj.spec.lifecycle.desiredPhase = "Running"
+        return obj
+  resource.customizations.actions.numaflow.numaproj.io_MonoVertex: |
+    discovery.lua: |
+      local actions = {}
+      actions["pause"] = {["disabled"] = true}
+      actions["unpause"] = {["disabled"] = true}
+
+      local paused = false
+      if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
+          paused = true
+      end
+      if paused then
+        actions["unpause"]["disabled"] = false
+      else
+        actions["pause"]["disabled"] = false
+      end
+      return actions
+    definitions:
+    - name: pause
+      action.lua: |
+        if obj.spec.lifecycle == nil then
+          obj.spec.lifecycle = {}
+        end
+        obj.spec.lifecycle.desiredPhase = "Paused"
+        return obj
+    - name: unpause
+      action.lua: |
+        obj.spec.lifecycle.desiredPhase = "Running"
+        return obj
