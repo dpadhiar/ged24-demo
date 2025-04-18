@@ -276,7 +276,7 @@ data:
       }
       actions["unpause"] = {
         ["disabled"] = true,
-        ["iconClass"] = "fa-solid fa-fw fa-unpause"
+        ["iconClass"] = "fa-solid fa-fw fa-play"
       }
 
       local paused = false
@@ -310,7 +310,7 @@ data:
       }
       actions["unpause"] = {
         ["disabled"] = true,
-        ["iconClass"] = "fa-solid fa-fw fa-unpause"
+        ["iconClass"] = "fa-solid fa-fw fa-play"
       }
 
       local paused = false
