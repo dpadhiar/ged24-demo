@@ -288,6 +288,7 @@ data:
       else
         actions["pause"]["disabled"] = false
       end
+      return actions
     definitions:
     - name: pause
       action.lua: |
@@ -321,6 +322,7 @@ data:
       else
         actions["pause"]["disabled"] = false
       end
+      return actions
     definitions:
     - name: pause
       action.lua: |
