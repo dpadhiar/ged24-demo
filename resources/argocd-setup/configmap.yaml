@@ -312,6 +312,10 @@ data:
         ["disabled"] = true,
         ["iconClass"] = "fa-solid fa-fw fa-play"
       }
+      actions["force-promote"] = {
+        ["disabled"] = true,
+        ["iconClass"] = "fa-solid fa-fw fa-forward"
+      }
 
       local paused = false
       if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
@@ -322,6 +326,16 @@ data:
       else
         actions["pause"]["disabled"] = false
       end
+
+      local forcePromote = false
+      if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[0] ~= nil and obj.metadata.ownerReferences[0].kind == "MonoVertexRollout") and (obj.metadata.labels ~= nil and obj.metadata.labels["force-promote"] ~= true) then
+        forcePromote = true
+      end
+      if forcePromote then
+        actions["force-promote"]["disabled"] = false
+      else
+        actions["force-promote"]["disabled"] = true
+
       return actions
     definitions:
     - name: pause
@@ -334,4 +348,11 @@ data:
     - name: unpause
       action.lua: |
         obj.spec.lifecycle.desiredPhase = "Running"
+        return obj
+    - name: force-promote
+      action.lua: |
+        if obj.metadata.labels == {} then
+          obj.metadata.labels = {}
+        end
+        obj.metadata.labels["numaplane.numaproj.io/force-promote"] = true
         return obj
