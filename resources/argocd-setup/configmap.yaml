@@ -270,19 +270,24 @@ data:
   resource.customizations.actions.numaflow.numaproj.io_Pipeline: |
     discovery.lua: |
       local actions = {}
-      actions["pause"] = {["disabled"] = true}
-      actions["unpause"] = {["disabled"] = true}
+      actions["pause"] = {
+        ["disabled"] = true,
+        ["iconClass"] = "fa-solid fa-fw fa-pause"
+      }
+      actions["unpause"] = {
+        ["disabled"] = true,
+        ["iconClass"] = "fa-solid fa-fw fa-unpause"
+      }
 
       local paused = false
       if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
-          paused = true
+        paused = true
       end
       if paused then
         actions["unpause"]["disabled"] = false
       else
         actions["pause"]["disabled"] = false
       end
-      return actions
     definitions:
     - name: pause
       action.lua: |
@@ -298,19 +303,24 @@ data:
   resource.customizations.actions.numaflow.numaproj.io_MonoVertex: |
     discovery.lua: |
       local actions = {}
-      actions["pause"] = {["disabled"] = true}
-      actions["unpause"] = {["disabled"] = true}
+      actions["pause"] = {
+        ["disabled"] = true,
+        ["iconClass"] = "fa-solid fa-fw fa-pause"
+      }
+      actions["unpause"] = {
+        ["disabled"] = true,
+        ["iconClass"] = "fa-solid fa-fw fa-unpause"
+      }
 
       local paused = false
       if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
-          paused = true
+        paused = true
       end
       if paused then
         actions["unpause"]["disabled"] = false
       else
         actions["pause"]["disabled"] = false
       end
-      return actions
     definitions:
     - name: pause
       action.lua: |
