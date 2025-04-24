@@ -3,6 +3,8 @@ kind: MonoVertexRollout
 metadata:
   name: numaplane-test-mvtx
   namespace: oss-analytics-numaplanetest1-qal
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   strategy:
     progressive:
