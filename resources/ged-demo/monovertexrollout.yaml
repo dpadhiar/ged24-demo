@@ -1,0 +1,37 @@
+apiVersion: numaplane.numaproj.io/v1alpha1
+kind: MonoVertexRollout
+metadata:
+  name: numaplane-test-mvtx
+  namespace: oss-analytics-numaplanetest1-qal
+spec:
+  strategy:
+    progressive:
+      assessmentSchedule: "60,60,10"
+    analysis:
+      args:
+      templates:
+  monoVertex:
+    metadata:
+      annotations:
+        link.argocd.argoproj.io/external-link: https://pi.nonprod.splunk.intuit.com/en-US/app/search/search?q=search%20(index%3DIntuit_oss_analytics_ossplatformanalytics%20workspace_id%3D{{.monovertex-namespace}}%20source%3Diksx%3Atech-pi-ppd-usw2-k8s%3A*%3A{{.monovertex-namespace}}%3A*)%20kubernetes_pod%3D{{.monovertex-name}}*&display.page.search.mode=smart&dispatch.sample_ratio=1&earliest=-24h%40h&latest=now
+    spec:
+      scale:
+        min: 2
+        max: 3
+        lookbackSeconds: 60
+      source:
+        udsource:
+          container:
+            image: quay.io/numaio/numaflow-go/source-simple-source:stable
+        transformer:
+          container:
+            image: docker.intuit.com/quay-rmt/numaio/numaflow-rs/source-transformer-now:stable
+      sink:
+        udsink:
+          container:
+            image: quay.io/numaio/numaflow-go/sink-log:stable
+            # image: quay.io/numaio/numaflow-java/simple-sink:stable
+        volumes:
+        - name: test-volume
+          configMap:
+            name: test-volume-{{.monovertex-name}}
