@@ -24,8 +24,8 @@ spec:
       source:
         udsource:
           container:
-            image: quay.io/numaio/numaflow-go/source-simple-source:stable
-            # image: quay.io/numaio/numaflow-go/source-simple-source:v0.6.1
+            # image: quay.io/numaio/numaflow-go/source-simple-source:stable
+            image: quay.io/numaio/numaflow-go/source-simple-source:v0.6.1
         transformer:
           container:
             image: docker.intuit.com/quay-rmt/numaio/numaflow-rs/source-transformer-now:stable
