@@ -331,7 +331,7 @@ data:
       if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[1] ~= nil and obj.metadata.ownerReferences[1].kind == "MonoVertexRollout") then
         forcePromote = true
       end
-      if (obj.metadata.labels ~= nil and obj.metadata.labels["force-promote"] == "true") then
+      if (obj.metadata.labels ~= nil and obj.metadata.labels["numaplane.numaproj.io/force-promote"] == "true") then
         forcePromote = false
       end
       if forcePromote then
