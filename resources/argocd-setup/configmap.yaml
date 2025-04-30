@@ -294,7 +294,7 @@ data:
       end
 
       local forcePromote = false
-      if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[1] ~= nil and obj.metadata.ownerReferences[1].kind == "MonoVertexRollout") then
+      if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[1] ~= nil and obj.metadata.ownerReferences[1].kind == "PipelineRollout") then
         forcePromote = true
       end
       if (obj.metadata.labels ~= nil and obj.metadata.labels["numaplane.numaproj.io/force-promote"] == "true") then
@@ -394,7 +394,7 @@ data:
       }
 
       local forcePromote = false
-      if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[1] ~= nil and obj.metadata.ownerReferences[1].kind == "MonoVertexRollout") then
+      if (obj.metadata.ownerReferences ~= nil and obj.metadata.ownerReferences[1] ~= nil and obj.metadata.ownerReferences[1].kind == "ISBServiceRollout") then
         forcePromote = true
       end
       if (obj.metadata.labels ~= nil and obj.metadata.labels["numaplane.numaproj.io/force-promote"] == "true") then
