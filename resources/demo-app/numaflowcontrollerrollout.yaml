@@ -7,4 +7,4 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   controller:
-    version: "1.4.4-rc1"
+    version: "1.5.2"
