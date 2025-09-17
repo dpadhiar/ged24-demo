@@ -260,28 +260,41 @@ data:
         ["disabled"] = true,
         ["iconClass"] = "fa-solid fa-fw fa-pause"
       }
-      actions["unpause"] = {
+      actions["unpause-gradual"] = {
         ["disabled"] = true,
+        ["displayName"] = "Unpause (gradual)",
         ["iconClass"] = "fa-solid fa-fw fa-play"
       }
-      actions["enable-force-promote"] = {
+      actions["unpause-fast"] = {
         ["disabled"] = true,
-        ["displayName"] = "Enable Force Promote"
-      }
-      actions["disable-force-promote"] = {
-        ["disabled"] = true,
-        ["displayName"] = "Disable Force Promote"
+        ["displayName"] = "Unpause (fast)",
+        ["iconClass"] = "fa-solid fa-fw fa-play"
       }
 
+      -- pause/unpause
       local paused = false
       if obj.spec.monoVertex.spec.lifecycle ~= nil and obj.spec.monoVertex.spec.lifecycle.desiredPhase ~= nil and obj.spec.monoVertex.spec.lifecycle.desiredPhase == "Paused" then
-          paused = true
+        paused = true
       end
       if paused then
-        actions["unpause"]["disabled"] = false
+        if obj.spec.monoVertex.metadata ~= nil and  obj.spec.monoVertex.metadata.annotations ~= nil and obj.spec.monoVertex.metadata.annotations["numaflow.numaproj.io/allowed-resume-strategies"] ~= nil then
+          -- determine which unpausing strategies will be enabled
+          -- if annotation not found, default will be resume slow
+          if obj.spec.monoVertex.metadata.annotations["numaflow.numaproj.io/allowed-resume-strategies"] == "fast" then
+            actions["unpause-fast"]["disabled"] = false
+          elseif obj.spec.monoVertex.metadata.annotations["numaflow.numaproj.io/allowed-resume-strategies"] == "slow, fast" then
+            actions["unpause-gradual"]["disabled"] = false
+            actions["unpause-fast"]["disabled"] = false
+          else
+            actions["unpause-gradual"]["disabled"] = false
+          end
+        else
+          actions["unpause-gradual"]["disabled"] = false
+        end
       else
         actions["pause"]["disabled"] = false
       end
+
       return actions
     definitions:
     - name: pause
@@ -291,9 +304,29 @@ data:
         end
         obj.spec.monoVertex.spec.lifecycle.desiredPhase = "Paused"
         return obj
-    - name: unpause
+    - name: unpause-fast
       action.lua: |
         obj.spec.monoVertex.spec.lifecycle.desiredPhase = "Running"
+        -- set strategy.fastResume to true
+        if obj.spec.strategy == nil then
+            obj.spec.strategy = {}
+        end
+        if obj.spec.strategy.pauseResume == nil then
+            obj.spec.strategy.pauseResume = {}
+        end
+        obj.spec.strategy.pauseResume.fastResume = true
+        return obj
+    - name: unpause-gradual
+      action.lua: |
+        obj.spec.monoVertex.spec.lifecycle.desiredPhase = "Running"
+        -- set strategy.fastResume to false
+        if obj.spec.strategy == nil then
+            obj.spec.strategy = {}
+        end
+        if obj.spec.strategy.pauseResume == nil then
+            obj.spec.strategy.pauseResume = {}
+        end
+        obj.spec.strategy.pauseResume.fastResume = false
         return obj
   resource.customizations.actions.numaflow.numaproj.io_Pipeline: |
     discovery.lua: |
