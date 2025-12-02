@@ -6,6 +6,15 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "3"
 spec:
+  strategy:
+    progressive:
+      assessmentSchedule: "10,200,60,10"
+    analysis:
+      templates:
+      - templateName: mvtx-acknowledged-messages
+        clusterScope: false
+    pauseResume:
+      fastResume: true
   monoVertex:
     metadata:
       annotations:
