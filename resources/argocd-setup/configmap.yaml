@@ -10,7 +10,8 @@ data:
   #application.instanceLabelKey: applications.argoproj.io/app-name
 
   # if these labels are present on a given resource, the value will be displayed on the UI for the resource (use comma for delimiting) 
-  resource.customLabels: "numaplane.numaproj.io/upgrade-state,numaplane.numaproj.io/parent-rollout-name"
+  # resource.customLabels: "numaplane.numaproj.io/upgrade-state,numaplane.numaproj.io/parent-rollout-name"
+  resource.customLabels: "numaplane.numaproj.io/upgrade-state"
 
   resource.customizations.health.numaplane.numaproj.io_PipelineRollout: |
     -- Remove this after releasing Argo CD 2.13. https://github.com/argoproj/argo-cd/pull/19077
