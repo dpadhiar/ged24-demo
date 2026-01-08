@@ -471,7 +471,6 @@ data:
         actions["force-promote"]["disabled"] = true
       end
 
-      -- delete
       local recyclable = false
       if obj.metadata.labels ~= nil and (obj.metadata.labels["numaplane.numaproj.io/upgrade-state"] == "recyclable") then
         recyclable = true
