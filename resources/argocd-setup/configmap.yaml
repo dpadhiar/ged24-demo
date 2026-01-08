@@ -442,6 +442,11 @@ data:
         ["disabled"] = true,
         ["iconClass"] = "fa-solid fa-fw fa-forward"
       }
+      actions["delete"] = {
+        ["disabled"] = true,
+        ["displayName"] = "Delete",
+        ["iconClass"] = "fa-solid fa-fw fa-trash"
+      }
 
       local paused = false
       if obj.spec.lifecycle ~= nil and obj.spec.lifecycle.desiredPhase ~= nil and obj.spec.lifecycle.desiredPhase == "Paused" then
@@ -466,8 +471,26 @@ data:
         actions["force-promote"]["disabled"] = true
       end
 
+      -- delete
+      local recyclable = false
+      if obj.metadata.labels ~= nil and (obj.metadata.labels["numaplane.numaproj.io/upgrade-state"] == "recyclable") then
+        recyclable = true
+      end
+      if recyclable then
+        actions["delete"]["disabled"] = false
+      else
+        actions["delete"]["disabled"] = true
+      end
+
       return actions
     definitions:
+    - name: delete
+      action.lua |
+        if obj.metadata.annotations == nil then
+          obj.metadata.annotations = {}
+        end
+        obj.metadata.annotations["numaplane.numaproj.io/marked-for-deletion"] = "true"
+        return obj
     - name: pause
       action.lua: |
         if obj.spec.lifecycle == nil then
